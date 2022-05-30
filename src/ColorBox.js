@@ -4,8 +4,13 @@ import './ColorBox.css';
 export default function ColorBox({ background, name }) {
   return (
     <div className="ColorBox" style={{background}}>
-      <span>{name}</span>
-      <span>more</span>
+      <div className="ColorBox-copy-container">
+        <div className="ColorBox-content">
+          <span>{name}</span>
+        </div>
+        <button className="ColorBox-copy-button">Copy</button>
+      </div>
+      <span className="ColorBox-see-more">More</span>
     </div>
   );
 }
