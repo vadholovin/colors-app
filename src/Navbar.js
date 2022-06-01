@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'rc-slider';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -27,7 +28,7 @@ function Navbar(props) {
   return (
     <div className="Navbar">
       <div className="logo">
-        <a href="#">color palettes</a>
+        <Link to="/">color palettes</Link>
       </div>
       <div className="slider-container">
         <span>Level: {level}</span>
