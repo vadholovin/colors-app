@@ -15,7 +15,7 @@ export default function Palette({ palette }) {
     />
   ));
   const changeLevel = (value) => setLevel(value);
-  const changeFormat = (event) => setColorFormat(event.target.value);
+  const changeFormat = (value) => setColorFormat(value);
 
   return (
     <div className="Palette">
