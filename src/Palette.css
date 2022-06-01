@@ -1,4 +1,6 @@
 .Palette {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
 }
 
@@ -7,4 +9,17 @@
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 25%;
   height: 90vh;
+}
+
+.Palette-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 5vh;
+  font-weight: bold;
+}
+
+.Palette-footer span {
+  margin: 0 1rem;
+  font-size: 1.2rem;
 }

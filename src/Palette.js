@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import './Palette.css';
 
 export default function Palette({ palette }) {
-  const {colors} = palette;
+  const {colors, paletteName, emoji} = palette;
   const [level, setLevel] = useState(500);
   const [colorFormat, setColorFormat] = useState('hex');
   const boxes = colors[level].map((color) => (
@@ -28,7 +28,10 @@ export default function Palette({ palette }) {
       <div className="Palette-colors">
         {boxes}
       </div>
-      {/* Footer eventually */}
+      <footer className='Palette-footer'>
+        {paletteName}
+        <span>{emoji}</span>
+      </footer>
     </div>
   );
 }
