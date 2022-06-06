@@ -20,8 +20,11 @@ const Root = styled('div')(({ theme }) => ({
     position: 'relative',
     overflow: 'hidden',
     border: '1px solid #000',
-    [`&:hover`] : {
+    '&:hover': {
       cursor: 'pointer'
+    },
+    '& a': {
+      textDecoration: 'none'
     }
   },
   [`& .${classes.colors}`]: {
@@ -60,16 +63,16 @@ function MiniPalette(props) {
   ));
   return (
     <Grid item xs={4}>
-      <Link to={`palette/${id}`}>
-        <Root className={classes.root}>
+      <Root className={classes.root}>
+        <Link to={`palette/${id}`}>
           <div className={classes.colors}>
             {miniColorBoxes}
           </div>
           <h5 className={classes.title}>
             {paletteName} <span>{emoji}</span>
           </h5>
-        </Root>
-      </Link>
+        </Link>
+      </Root>
     </Grid>
   );
 }
