@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
 
 const PREFIX = 'MiniPalette';
 const classes = {
@@ -8,6 +9,7 @@ const classes = {
   colors: `${PREFIX}-colors`,
   title: `${PREFIX}-title`,
   emoji: `${PREFIX}-emoji`,
+  miniColor: `${PREFIX}-miniColor`,
 };
 
 const Root = styled('div')(({ theme }) => ({
@@ -17,12 +19,17 @@ const Root = styled('div')(({ theme }) => ({
     padding: '0.5rem',
     position: 'relative',
     overflow: 'hidden',
+    border: '1px solid #000',
     [`&:hover`] : {
       cursor: 'pointer'
     }
   },
   [`& .${classes.colors}`]: {
-    backgroundColor: 'grey'
+    backgroundColor: '#dae1e4',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(5, 1fr)',
+    borderRadius: '5px',
+    overflow: 'hidden'
   },
   [`& .${classes.title}`]: {
     display: 'flex',
@@ -37,16 +44,33 @@ const Root = styled('div')(({ theme }) => ({
   [`& .${classes.emoji}`]: {
     marginLeft: '0.5rem'
   },
-
+  [`& .${classes.miniColor}`] : {
+    height: '2rem'
+  }
 }));
 
 function MiniPalette(props) {
-  const { paletteName, emoji, colors } = props;
+  const { paletteName, emoji, colors, id } = props;
+  const miniColorBoxes = colors.map((color, index) => (
+    <div
+      key={index}
+      className={classes.miniColor}
+      style={{ backgroundColor: color.color }}
+    />
+  ));
   return (
-    <Root className={classes.root}>
-      <div className={classes.colors}></div>
-      <h5 className={classes.title}>{paletteName} <span>{emoji}</span></h5>
-    </Root>
+    <Grid item xs={4}>
+      <Link to={`palette/${id}`}>
+        <Root className={classes.root}>
+          <div className={classes.colors}>
+            {miniColorBoxes}
+          </div>
+          <h5 className={classes.title}>
+            {paletteName} <span>{emoji}</span>
+          </h5>
+        </Root>
+      </Link>
+    </Grid>
   );
 }
 

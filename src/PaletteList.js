@@ -9,7 +9,7 @@ function PaletteList({ palettes }) {
     <Box
       sx={{
         backgroundColor: 'blue',
-        height: '100%',
+        height: '100vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start'
