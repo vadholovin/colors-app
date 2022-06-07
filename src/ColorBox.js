@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import './ColorBox.css';
 
@@ -27,7 +28,9 @@ export default function ColorBox({ background, name }) {
           </div>
           <button className="ColorBox-copy-button">Copy</button>
         </div>
-        <span className="ColorBox-see-more">More</span>
+        <Link to="/" onClick={e => e.stopPropagation()}>
+          <span className="ColorBox-see-more">More</span>
+        </Link>
       </div>
     </CopyToClipboard>
   );
