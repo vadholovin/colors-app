@@ -18,6 +18,7 @@ function Palette() {
       name={color.name}
       background={color[colorFormat]}
       moreUrl={`/palette/${paletteId}/${color.id}`}
+      showLink={true}
     />
   ));
   const changeLevel = (value) => setLevel(value);
