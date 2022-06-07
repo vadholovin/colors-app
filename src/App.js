@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import PaletteList from './PaletteList';
 import Palette from './Palette';
+import SingleColorPalette from './SingleColorPalette';
 import NotFound from './NotFound';
 import seedColors from './seedColors';
 import './App.css';
@@ -14,8 +15,8 @@ function App() {
     <div>
       <Routes>
         <Route path='/' element={<PaletteList palettes={seedColors} />} />
-        <Route path="/palette/:id" element={<Palette />} />
-        <Route path="/palette/:paletteId/:colorId" element={<h1>Color</h1>} />
+        <Route path="/palette/:paletteId" element={<Palette />} />
+        <Route path="/palette/:paletteId/:colorId" element={<SingleColorPalette />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

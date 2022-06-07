@@ -7,8 +7,8 @@ import Navbar from './Navbar';
 import './Palette.css';
 
 function Palette() {
-  const { id } = useParams();
-  const currentPalette = generatePalette(findPalette(id));
+  const { paletteId } = useParams();
+  const currentPalette = generatePalette(findPalette(paletteId));
   const {colors, paletteName, emoji} = currentPalette;
   const [level, setLevel] = useState(500);
   const [colorFormat, setColorFormat] = useState('hex');
@@ -17,6 +17,7 @@ function Palette() {
       key={color.name}
       name={color.name}
       background={color[colorFormat]}
+      moreUrl={`/palette/${paletteId}/${color.id}`}
     />
   ));
   const changeLevel = (value) => setLevel(value);
