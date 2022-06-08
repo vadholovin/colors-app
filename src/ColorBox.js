@@ -2,10 +2,34 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import chroma from 'chroma-js';
-import { Box } from '@mui/system';
+import { styled } from '@mui/material';
 import './ColorBox.css';
 
-export default function ColorBox(props) {
+const ColorName = styled('span', {
+  shouldForwardProp: (props) => props !== 'isDarkBgColor'
+})(({ isDarkBgColor, theme }) => ({
+  color: isDarkBgColor ? '#fff' : '#000'
+}));
+
+const SeeMore = styled('span', {
+  shouldForwardProp: (props) => props !== 'isLightBgColor'
+})(({ isLightBgColor, theme }) => ({
+  color: isLightBgColor ? 'rgba(0,0,0,0.5)' : '#fff'
+}));
+
+const CopyButton = styled('button', {
+  shouldForwardProp: (props) => props !== 'isLightBgColor'
+})(({ isLightBgColor, theme }) => ({
+  color: isLightBgColor ? 'rgba(0,0,0,0.5)' : '#fff'
+}));
+
+const ColorValue = styled('p', {
+  shouldForwardProp: (props) => props !== 'isLightBgColor'
+})(({ isLightBgColor, theme }) => ({
+  color: isLightBgColor ? 'rgba(0,0,0,0.5)' : '#fff'
+}));
+
+function ColorBox(props) {
   const { background, name, moreUrl, isShowingFullPalette } = props;
   const [copied, setCopied] = useState(false);
   const changeCopyState = () => {
@@ -14,55 +38,48 @@ export default function ColorBox(props) {
       setCopied(false);
     }, 1500);
   };
-  const isDarkColor = chroma(background).luminance() <= 0.08;
-  const isLightColor = chroma(background).luminance() > 0.5;
+  const isDarkBgColor = chroma(background).luminance() <= 0.08;
+  const isLightBgColor = chroma(background).luminance() > 0.5;
 
   return (
     <CopyToClipboard text={background} onCopy={changeCopyState}>
       <div className="ColorBox" style={{background}}>
         <div
-          className={`ColorBox-copy-overlay ${copied ? 'show' : null}`}
+          className={`ColorBox-copy-overlay ${copied ? 'show' : ''}`}
           style={{background}}
         />
-        <div className={`ColorBox-copy-msg ${copied ? 'show' : null}`}>
+        <div className={`ColorBox-copy-msg ${copied ? 'show' : ''}`}>
           <h2>Copied!</h2>
-          <p className={isLightColor ? 'dark-text' : null}>{background}</p>
+          <ColorValue isLightBgColor={isLightBgColor}>
+            {background}
+          </ColorValue>
         </div>
         <div className="ColorBox-copy-container">
           <div className="ColorBox-content">
-            <Box
-              component="span"
-              sx={{
-                color: isDarkColor ? '#fff' : null
-              }}
-            >
+            <ColorName isDarkBgColor={isDarkBgColor}>
               {name}
-            </Box>
+            </ColorName>
           </div>
-          <Box
-            component="button"
+          <CopyButton
+            isLightBgColor={isLightBgColor}
             className="ColorBox-copy-button"
-            sx={{
-              color: isLightColor ? 'rgba(0,0,0,0.5)' : null
-            }}
           >
             Copy
-          </Box>
+          </CopyButton>
         </div>
         {isShowingFullPalette && (
           <Link to={moreUrl} onClick={e => e.stopPropagation()}>
-            <Box
-              component="span"
+            <SeeMore
+              isLightBgColor={isLightBgColor}
               className="ColorBox-see-more"
-              sx={{
-                color: isLightColor ? 'rgba(0,0,0,0.5)' : null
-              }}
             >
               More
-            </Box>
+            </SeeMore>
           </Link>
         )}
       </div>
     </CopyToClipboard>
   );
 }
+
+export default ColorBox;
