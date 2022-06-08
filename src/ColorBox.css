@@ -4,7 +4,12 @@
   cursor: pointer;
 }
 
-.ColorBox-copy-button {
+.ColorBox--go-back {
+  background-color: #000;
+}
+
+.ColorBox-copy-button,
+.ColorBox-back-button {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -17,9 +22,16 @@
   text-align: center;
   text-transform: uppercase;
   background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+.ColorBox-back-button {
+  text-decoration: none;
+}
+
+.ColorBox-copy-button {
   opacity: 0;
   transition: opacity 0.5s;
-  cursor: pointer;
 }
 
 .ColorBox:hover .ColorBox-copy-button {
