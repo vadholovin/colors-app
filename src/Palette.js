@@ -4,6 +4,7 @@ import seedColors from './seedColors';
 import { generatePalette } from './colorHelpers';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
+import PaletteFooter from './PaletteFooter';
 import './Palette.css';
 
 function Palette() {
@@ -35,14 +36,10 @@ function Palette() {
         changeLevel={changeLevel}
         colorFormat={colorFormat}
         changeFormat={changeFormat}
+        showLevelSlider={true}
       />
-      <div className="Palette-colors">
-        {boxes}
-      </div>
-      <footer className='Palette-footer'>
-        {paletteName}
-        <span>{emoji}</span>
-      </footer>
+      <div className="Palette-colors">{boxes}</div>
+      <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
   );
 }

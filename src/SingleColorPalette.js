@@ -4,14 +4,15 @@ import seedColors from './seedColors';
 import { generatePalette } from './colorHelpers';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
+import PaletteFooter from './PaletteFooter';
 import './Palette.css';
 
 function SingleColorPalette() {
   const { paletteId, colorId } = useParams();
   const currentPalette = generatePalette(findPalette(paletteId));
+  const {paletteName, emoji} = currentPalette;
   const shades = gatherShades(currentPalette, colorId);
-
-  console.log(shades);
+  const [colorFormat, setColorFormat] = useState('hex');
 
   function findPalette(id) {
     return seedColors.find(item => item.id === id);
@@ -34,26 +35,22 @@ function SingleColorPalette() {
     <ColorBox
       key={color.name}
       name={color.name}
-      background={color.hex}
+      background={color[colorFormat]}
       showLink={false}
     />
   ));
 
+  const changeFormat = (value) => setColorFormat(value);
+
   return (
     <div className="Palette">
-      {/* <Navbar
-        level={level}
-        changeLevel={changeLevel}
+      <Navbar
         colorFormat={colorFormat}
         changeFormat={changeFormat}
-      /> */}
-      <div className="Palette-colors">
-        {boxes}
-      </div>
-      <footer className='Palette-footer'>
-        {/* {paletteName}
-        <span>{emoji}</span> */}
-      </footer>
+        showLevelSlider={false}
+      />
+      <div className="Palette-colors">{boxes}</div>
+      <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
   )
 }

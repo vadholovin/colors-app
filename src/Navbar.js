@@ -10,13 +10,14 @@ import 'rc-slider/assets/index.css';
 import './Navbar.css';
 
 function Navbar(props) {
-  const { level, changeLevel, colorFormat, changeFormat } = props;
+  const { level, changeLevel, colorFormat, changeFormat, showLevelSlider } = props;
   const [state, setState] = useState({
     open: false,
     vertical: 'bottom',
     horizontal: 'left'
   });
   const { open, vertical, horizontal } = state;
+
   const handleFormatChange = (event) => {
     changeFormat(event.target.value);
     setState({...state, open: true});
@@ -30,18 +31,20 @@ function Navbar(props) {
       <div className="logo">
         <Link to="/">color palettes</Link>
       </div>
-      <div className="slider-container">
-        <span>Level: {level}</span>
-        <div className="slider">
-          <Slider
-            defaultValue={level}
-            min={100}
-            max={900}
-            step={100}
-            onAfterChange={changeLevel}
-          />
+      {showLevelSlider && (
+        <div className="slider-container">
+          <span>Level: {level}</span>
+          <div className="slider">
+            <Slider
+              defaultValue={level}
+              min={100}
+              max={900}
+              step={100}
+              onAfterChange={changeLevel}
+            />
+          </div>
         </div>
-      </div>
+      )}
       <div className="select-container">
         <Select variant="standard" value={colorFormat} onChange={handleFormatChange}>
           <MenuItem value="hex">HEX - #ffffff</MenuItem>
