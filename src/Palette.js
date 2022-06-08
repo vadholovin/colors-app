@@ -19,7 +19,7 @@ function Palette() {
       name={color.name}
       background={color[colorFormat]}
       moreUrl={`/palette/${paletteId}/${color.id}`}
-      showLink={true}
+      isShowingFullPalette={true}
     />
   ));
   const changeLevel = (value) => setLevel(value);
@@ -36,7 +36,7 @@ function Palette() {
         changeLevel={changeLevel}
         colorFormat={colorFormat}
         changeFormat={changeFormat}
-        showLevelSlider={true}
+        isShowingFullPalette={true}
       />
       <div className="Palette-colors">{boxes}</div>
       <PaletteFooter paletteName={paletteName} emoji={emoji} />

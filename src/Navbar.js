@@ -10,7 +10,7 @@ import 'rc-slider/assets/index.css';
 import './Navbar.css';
 
 function Navbar(props) {
-  const { level, changeLevel, colorFormat, changeFormat, showLevelSlider } = props;
+  const { level, changeLevel, colorFormat, changeFormat, isShowingFullPalette } = props;
   const [state, setState] = useState({
     open: false,
     vertical: 'bottom',
@@ -31,7 +31,7 @@ function Navbar(props) {
       <div className="logo">
         <Link to="/">color palettes</Link>
       </div>
-      {showLevelSlider && (
+      {isShowingFullPalette && (
         <div className="slider-container">
           <span>Level: {level}</span>
           <div className="slider">

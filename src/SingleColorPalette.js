@@ -36,7 +36,7 @@ function SingleColorPalette() {
       key={color.name}
       name={color.name}
       background={color[colorFormat]}
-      showLink={false}
+      isShowingFullPalette={false}
     />
   ));
 
@@ -47,7 +47,7 @@ function SingleColorPalette() {
       <Navbar
         colorFormat={colorFormat}
         changeFormat={changeFormat}
-        showLevelSlider={false}
+        isShowingFullPalette={false}
       />
       <div className="Palette-colors">
         {boxes}
