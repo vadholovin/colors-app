@@ -23,11 +23,14 @@ function PaletteList({ palettes }) {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            color: 'white'
+            color: 'white',
+            '& a': {
+              color: 'inherit'
+            }
           }}
         >
           <h1>React Colors</h1>
-          <Link to="/palette/new" style={{color: 'white'}}>Create Palette</Link>
+          <Link to="/palette/new">Create Palette</Link>
         </Box>
 
         <Grid container spacing={4}>
