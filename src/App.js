@@ -8,7 +8,7 @@ import Palette from './Palette';
 import SingleColorPalette from './SingleColorPalette';
 import NotFound from './NotFound';
 import seedColors from './seedColors';
-import './App.css';
+import './styles/App.css';
 
 function App() {
   return (

@@ -5,7 +5,7 @@ import { generatePalette } from './colorHelpers';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
-import './Palette.css';
+import './styles/Palette.css';
 
 function Palette() {
   const { paletteId } = useParams();

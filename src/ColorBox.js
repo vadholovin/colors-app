@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import chroma from 'chroma-js';
 import { styled } from '@mui/material';
-import './ColorBox.css';
+import './styles/ColorBox.css';
 
 const ColorName = styled('span', {
   shouldForwardProp: (props) => props !== 'isDarkBgColor'
