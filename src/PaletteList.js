@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -21,11 +22,12 @@ function PaletteList({ palettes }) {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
+            color: 'white'
           }}
         >
           <h1>React Colors</h1>
-          <span>Create Palette</span>
+          <Link to="/palette/new" style={{color: 'white'}}>Create Palette</Link>
         </Box>
 
         <Grid container spacing={4}>
