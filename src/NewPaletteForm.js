@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {v4 as uuid} from 'uuid';
+import { v4 as uuid } from 'uuid';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -13,17 +13,18 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { Button } from '@mui/material';
 import { ChromePicker } from 'react-color';
+import DraggableColorBox from './DraggableColorBox';
 
 const drawerWidth = 400;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    height: '100vh',
     marginLeft: `-${drawerWidth}px`,
     ...(open && {
       transition: theme.transitions.create('margin', {
@@ -142,14 +143,17 @@ function NewPaletteForm() {
       <Main open={open}>
         <DrawerHeader />
         {colors.length > 0 && (
-          <Box component='ul'>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(5, 1fr)',
+              gridTemplateRows: 'repeat(4, 1fr)',
+              height: 'calc(100vh - 64px)',
+            }}
+          >
             {colors.map((color) => (
-              <Box
-                key={uuid()}
-                component='li'
-                sx={{backgroundColor: color}}
-              >
-                {color}
+              <Box key={uuid()}>
+                <DraggableColorBox color={color} />
               </Box>
             ))}
           </Box>
