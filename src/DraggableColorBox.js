@@ -1,7 +1,7 @@
 import React from 'react';
 import Paper from '@mui/material/Paper';
 
-function DraggableColorBox({ color }) {
+function DraggableColorBox({ color, name }) {
   return (
     <Paper
       square
@@ -12,7 +12,7 @@ function DraggableColorBox({ color }) {
         backgroundColor: color,
       }}
     >
-      {color}
+      {name}
     </Paper>
   )
 }
