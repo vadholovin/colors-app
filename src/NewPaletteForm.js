@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {v4 as uuid} from 'uuid';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -62,6 +63,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 function NewPaletteForm() {
   const [open, setOpen] = useState(false);
+  const [currentColor, setCurrentColor] = useState('teal');
+  const [colors, setColors] = useState(['red', 'aqua']);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -70,6 +73,14 @@ function NewPaletteForm() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const updateCurrentColor = (newCurrentColor) => {
+    setCurrentColor(newCurrentColor.hex);
+  };
+
+  const addNewColor = () => {
+    setColors([...colors, currentColor]);
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -111,15 +122,38 @@ function NewPaletteForm() {
         <Divider />
         <Typography variant='h4'>Design Your Palette</Typography>
         <Box>
-          <Button variant='contained' color='error'>Clear Palette</Button>
-          <Button variant='contained' color='primary'>Random Palette</Button>
+          <Button variant='contained' color='error' size='small'>Clear Palette</Button>
+          <Button variant='contained' color='primary' size='small'>Random Palette</Button>
         </Box>
-        <ChromePicker color="red" onChangeComplete={(newColor) => { console.log(newColor); }} />
-        <Button variant='contained' color='primary'>Add Color</Button>
+        <ChromePicker
+          color={currentColor}
+          onChangeComplete={updateCurrentColor}
+        />
+        <Button
+          variant='contained'
+          color='primary'
+          size="large"
+          sx={{backgroundColor: currentColor}}
+          onClick={addNewColor}
+        >
+          Add Color
+        </Button>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-
+        {colors.length > 0 && (
+          <Box component='ul'>
+            {colors.map((color) => (
+              <Box
+                key={uuid()}
+                component='li'
+                sx={{backgroundColor: color}}
+              >
+                {color}
+              </Box>
+            ))}
+          </Box>
+        )}
       </Main>
     </Box>
   )
