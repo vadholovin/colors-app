@@ -4,8 +4,10 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-function DraggableColorBox({ color, name }) {
-  const handleDelete = () => {};
+function DraggableColorBox({ color, name, removeColor }) {
+  const handleRemove = () => {
+    removeColor(name);
+  };
   return (
     <Paper
       square
@@ -46,7 +48,7 @@ function DraggableColorBox({ color, name }) {
         </Box>
         <IconButton
           aria-label="delete color box"
-          onClick={handleDelete}
+          onClick={handleRemove}
           edge="start"
         >
           <DeleteIcon

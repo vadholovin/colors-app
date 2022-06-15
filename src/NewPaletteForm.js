@@ -112,6 +112,10 @@ function NewPaletteForm({ palettes, savePalette }) {
     navigate('/');
   };
 
+  const removeColor = (colorName) => {
+    setColors(colors.filter(({ name }) => name !== colorName));
+  };
+
   useEffect(() => {
     ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
       return !colors.some(
@@ -248,7 +252,11 @@ function NewPaletteForm({ palettes, savePalette }) {
           >
             {colors.map((color) => (
               <Box key={uuid()}>
-                <DraggableColorBox color={color.color} name={color.name} />
+                <DraggableColorBox
+                  color={color.color}
+                  name={color.name}
+                  removeColor={removeColor}
+                />
               </Box>
             ))}
           </Box>
