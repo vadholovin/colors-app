@@ -31,7 +31,9 @@ function App() {
         />
         <Route
           path="/palette/new"
-          element={<NewPaletteForm savePalette={savePalette} />}
+          element={
+            <NewPaletteForm palettes={palettes} savePalette={savePalette} />
+          }
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
