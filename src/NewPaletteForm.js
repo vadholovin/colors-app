@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -34,7 +35,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
       }),
       marginLeft: 0,
     }),
-  }),
+  })
 );
 
 const AppBar = styled(MuiAppBar, {
@@ -63,11 +64,12 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-function NewPaletteForm() {
+function NewPaletteForm({ savePalette }) {
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState('teal');
   const [currentName, setCurrentName] = useState('');
   const [colors, setColors] = useState([]);
+  let navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -82,14 +84,25 @@ function NewPaletteForm() {
   };
 
   const addNewColor = () => {
-    setColors([...colors, {name: currentName, color: currentColor}]);
+    setColors([...colors, { name: currentName, color: currentColor }]);
     setCurrentName('');
-  }
+  };
 
   const handleNameChange = (evt) => {
     const name = evt.target.value.trim();
     setCurrentName(name);
-  }
+  };
+
+  const handleSubmit = () => {
+    const paletteName = 'Test Palette';
+    const newPalette = {
+      id: paletteName.toLowerCase().replace(/ /g, '-'),
+      paletteName,
+      colors,
+    };
+    savePalette(newPalette);
+    navigate('/');
+  };
 
   useEffect(() => {
     ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
@@ -110,7 +123,7 @@ function NewPaletteForm() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} color="default">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -124,6 +137,9 @@ function NewPaletteForm() {
           <Typography variant="h6" noWrap component="div">
             Persistent drawer
           </Typography>
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -145,26 +161,24 @@ function NewPaletteForm() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <Typography variant='h4'>Design Your Palette</Typography>
+        <Typography variant="h4">Design Your Palette</Typography>
         <Box>
-          <Button variant='contained' color='error' size='small'>Clear Palette</Button>
-          <Button variant='contained' color='primary' size='small'>Random Palette</Button>
+          <Button variant="contained" color="error" size="small">
+            Clear Palette
+          </Button>
+          <Button variant="contained" color="primary" size="small">
+            Random Palette
+          </Button>
         </Box>
         <ChromePicker
           color={currentColor}
           onChangeComplete={updateCurrentColor}
         />
-        <ValidatorForm
-          onSubmit={addNewColor}
-        >
+        <ValidatorForm onSubmit={addNewColor}>
           <TextValidator
             value={currentName}
             onChange={handleNameChange}
-            validators={[
-              'required',
-              'isColorNameUnique',
-              'isColorUnique',
-            ]}
+            validators={['required', 'isColorNameUnique', 'isColorUnique']}
             errorMessages={[
               'Enter a color name',
               'Color name must be unique',
@@ -173,11 +187,11 @@ function NewPaletteForm() {
           />
 
           <Button
-            type='submit'
-            variant='contained'
-            color='primary'
+            type="submit"
+            variant="contained"
+            color="primary"
             size="large"
-            sx={{backgroundColor: currentColor}}
+            sx={{ backgroundColor: currentColor }}
           >
             Add Color
           </Button>
@@ -203,7 +217,7 @@ function NewPaletteForm() {
         )}
       </Main>
     </Box>
-  )
+  );
 }
 
 export default NewPaletteForm;

@@ -1,22 +1,17 @@
-import React, {useState} from 'react';
-import {useParams, Link} from 'react-router-dom';
-import seedColors from './seedColors';
+import React, { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { generatePalette } from './colorHelpers';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
 import './styles/Palette.css';
 
-function SingleColorPalette() {
+function SingleColorPalette({ findPalette }) {
   const { paletteId, colorId } = useParams();
   const currentPalette = generatePalette(findPalette(paletteId));
-  const {paletteName, emoji} = currentPalette;
+  const { paletteName, emoji } = currentPalette;
   const shades = gatherShades(currentPalette, colorId);
   const [colorFormat, setColorFormat] = useState('hex');
-
-  function findPalette(id) {
-    return seedColors.find(item => item.id === id);
-  }
 
   function gatherShades(palette, colorToFilterBy) {
     let shades = [];
@@ -24,7 +19,7 @@ function SingleColorPalette() {
 
     for (let key in allColors) {
       shades = shades.concat(
-        allColors[key].find(color => color.id === colorToFilterBy)
+        allColors[key].find((color) => color.id === colorToFilterBy)
       );
     }
 
@@ -52,12 +47,14 @@ function SingleColorPalette() {
       <div className="Palette-colors">
         {boxes}
         <div className="ColorBox ColorBox--go-back">
-          <Link to={`/palette/${paletteId}`} className="ColorBox-back-button">Go Back</Link>
+          <Link to={`/palette/${paletteId}`} className="ColorBox-back-button">
+            Go Back
+          </Link>
         </div>
       </div>
       <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
-  )
+  );
 }
 
 export default SingleColorPalette;

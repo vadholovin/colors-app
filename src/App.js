@@ -1,8 +1,5 @@
-import React from 'react';
-import {
-  Routes,
-  Route,
-} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import PaletteList from './PaletteList';
 import Palette from './Palette';
 import SingleColorPalette from './SingleColorPalette';
@@ -12,13 +9,30 @@ import seedColors from './seedColors';
 import './styles/App.css';
 
 function App() {
+  const [palettes, setPalettes] = useState(seedColors);
+  const savePalette = (newPalette) => {
+    setPalettes([...palettes, newPalette]);
+  };
+
+  const findPalette = (id) => {
+    return palettes.find((item) => item.id === id);
+  };
   return (
     <div>
       <Routes>
-        <Route path='/' element={<PaletteList palettes={seedColors} />} />
-        <Route path="/palette/:paletteId" element={<Palette />} />
-        <Route path="/palette/:paletteId/:colorId" element={<SingleColorPalette />} />
-        <Route path="/palette/new" element={<NewPaletteForm />} />
+        <Route path="/" element={<PaletteList palettes={palettes} />} />
+        <Route
+          path="/palette/:paletteId"
+          element={<Palette findPalette={findPalette} />}
+        />
+        <Route
+          path="/palette/:paletteId/:colorId"
+          element={<SingleColorPalette findPalette={findPalette} />}
+        />
+        <Route
+          path="/palette/new"
+          element={<NewPaletteForm savePalette={savePalette} />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
