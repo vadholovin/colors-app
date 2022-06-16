@@ -10,7 +10,8 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import DraggableColorBox from './DraggableColorBox';
 
 const drawerWidth = 400;
@@ -98,6 +99,7 @@ function NewPaletteForm({ palettes, savePalette, maxColors = 20 }) {
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
+            alignItems: 'center',
             width: drawerWidth,
             boxSizing: 'border-box',
           },
@@ -112,31 +114,47 @@ function NewPaletteForm({ palettes, savePalette, maxColors = 20 }) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <Typography variant="h4">Design Your Palette</Typography>
-        <Box>
-          <Button
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '90%',
+            height: '100%',
+          }}
+        >
+          <Typography variant="h4" gutterBottom>
+            Design Your Palette
+          </Typography>
+          <ButtonGroup
             variant="contained"
-            color="error"
-            size="small"
-            onClick={clearColors}
+            sx={{
+              width: '100%',
+              marginBottom: '2rem',
+              '& .MuiButton-root': {
+                width: '50%',
+              },
+            }}
           >
-            Clear Palette
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            onClick={addRandomColor}
-            disabled={paletteIsFull}
-          >
-            Random Color
-          </Button>
+            <Button color="error" size="small" onClick={clearColors}>
+              Clear Palette
+            </Button>
+            <Button
+              color="primary"
+              size="small"
+              onClick={addRandomColor}
+              disabled={paletteIsFull}
+            >
+              Random Color
+            </Button>
+          </ButtonGroup>
+          <ColorPickerForm
+            colors={colors}
+            paletteIsFull={paletteIsFull}
+            addNewColor={addNewColor}
+          />
         </Box>
-        <ColorPickerForm
-          colors={colors}
-          paletteIsFull={paletteIsFull}
-          addNewColor={addNewColor}
-        />
       </Drawer>
       <Main open={open}>
         <DrawerHeader />

@@ -39,11 +39,21 @@ function ColorPickerForm({ colors, addNewColor, paletteIsFull }) {
   }, [colors, colorName, colorValue]);
   return (
     <>
-      <ChromePicker color={colorValue} onChangeComplete={updateCurrentColor} />
-      <ValidatorForm onSubmit={handleSubmit}>
+      <ChromePicker
+        width={'100%'}
+        color={colorValue}
+        onChangeComplete={updateCurrentColor}
+      />
+      <ValidatorForm
+        onSubmit={handleSubmit}
+        style={{
+          width: '100%',
+          marginTop: '1.25rem',
+        }}
+      >
         <TextValidator
           label="Color Name"
-          variant="standard"
+          variant="filled"
           name="colorName"
           value={colorName}
           onChange={handleChange}
@@ -53,6 +63,9 @@ function ColorPickerForm({ colors, addNewColor, paletteIsFull }) {
             'Color name must be unique',
             'Color must be unique',
           ]}
+          sx={{
+            width: '100%',
+          }}
         />
 
         <Button
@@ -60,7 +73,11 @@ function ColorPickerForm({ colors, addNewColor, paletteIsFull }) {
           variant="contained"
           color="primary"
           size="large"
-          sx={{ backgroundColor: !paletteIsFull ? colorValue : null }}
+          sx={{
+            width: '100%',
+            marginTop: '1rem',
+            backgroundColor: !paletteIsFull ? colorValue : null,
+          }}
           disabled={paletteIsFull}
         >
           {paletteIsFull ? 'Full Palette' : 'Add Color'}
