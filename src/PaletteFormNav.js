@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -15,6 +16,9 @@ const drawerWidth = 400;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  height: '64px',
   transition: theme.transitions.create(['margin', 'width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -66,6 +70,13 @@ function PaletteFormNav({ open, handleDrawerOpen, handleSubmit, palettes }) {
           <Typography variant="h6" noWrap component="div">
             Persistent drawer
           </Typography>
+        </Toolbar>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
           <ValidatorForm onSubmit={() => handleSubmit(paletteName)}>
             <TextValidator
               label="Palette Name"
@@ -82,13 +93,13 @@ function PaletteFormNav({ open, handleDrawerOpen, handleSubmit, palettes }) {
             <Button type="submit" variant="contained" color="primary">
               Save Palette
             </Button>
-            <Link to="/">
-              <Button variant="contained" color="secondary" component="span">
-                Go Back
-              </Button>
-            </Link>
           </ValidatorForm>
-        </Toolbar>
+          <Link to="/">
+            <Button variant="contained" color="secondary" component="span">
+              Go Back
+            </Button>
+          </Link>
+        </Box>
       </AppBar>
     </>
   );
