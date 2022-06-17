@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const PREFIX = 'MiniPalette';
 const classes = {
@@ -20,19 +22,21 @@ const Root = styled('div')(({ theme }) => ({
     position: 'relative',
     overflow: 'hidden',
     border: '1px solid #000',
-    '&:hover': {
-      cursor: 'pointer'
+    cursor: 'pointer',
+    '&:hover .MuiButtonBase-root': {
+      opacity: '1',
+      transition: 'all 0.3s ease-in-out',
     },
     '& a': {
-      textDecoration: 'none'
-    }
+      textDecoration: 'none',
+    },
   },
   [`& .${classes.colors}`]: {
     backgroundColor: '#dae1e4',
     display: 'grid',
     gridTemplateColumns: 'repeat(5, 1fr)',
     borderRadius: '5px',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   [`& .${classes.title}`]: {
     display: 'flex',
@@ -42,18 +46,17 @@ const Root = styled('div')(({ theme }) => ({
     color: 'black',
     paddingTop: '0.5rem',
     fontSize: '1rem',
-    position: 'relative'
+    position: 'relative',
   },
   [`& .${classes.emoji}`]: {
-    marginLeft: '0.5rem'
+    marginLeft: '0.5rem',
   },
-  [`& .${classes.miniColor}`] : {
-    height: '2rem'
-  }
+  [`& .${classes.miniColor}`]: {
+    height: '2rem',
+  },
 }));
 
-function MiniPalette(props) {
-  const { paletteName, emoji, colors, id } = props;
+function MiniPalette({ paletteName, emoji, colors, id }) {
   const miniColorBoxes = colors.map((color, index) => (
     <div
       key={index}
@@ -65,13 +68,30 @@ function MiniPalette(props) {
     <Grid item xs={4}>
       <Root className={classes.root}>
         <Link to={`palette/${id}`}>
-          <div className={classes.colors}>
-            {miniColorBoxes}
-          </div>
+          <div className={classes.colors}>{miniColorBoxes}</div>
           <h5 className={classes.title}>
             {paletteName} <span>{emoji}</span>
           </h5>
         </Link>
+        <IconButton
+          aria-label="delete palette"
+          // onClick={handleRemovePalette}
+          size="small"
+          sx={{
+            position: 'absolute',
+            top: '0',
+            right: '0',
+            borderRadius: '0',
+            color: 'white',
+            opacity: '0',
+            backgroundColor: '#eb3d30',
+            '&:hover': {
+              backgroundColor: '#eb3d30',
+            },
+          }}
+        >
+          <DeleteIcon fontSize="small" />
+        </IconButton>
       </Root>
     </Grid>
   );
