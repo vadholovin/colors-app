@@ -9,9 +9,17 @@ import seedColors from './seedColors';
 import './styles/App.css';
 
 function App() {
-  const [palettes, setPalettes] = useState(seedColors);
+  const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
+  const [palettes, setPalettes] = useState(savedPalettes || seedColors);
+
+  const syncLocalStorage = (newPalettes) => {
+    window.localStorage.setItem('palettes', JSON.stringify(newPalettes));
+  };
+
   const savePalette = (newPalette) => {
-    setPalettes([...palettes, newPalette]);
+    const newPalettes = [...palettes, newPalette];
+    setPalettes(newPalettes);
+    syncLocalStorage(newPalettes);
   };
 
   const findPalette = (id) => {
