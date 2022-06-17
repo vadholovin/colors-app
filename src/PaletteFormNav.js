@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
 import { styled } from '@mui/material/styles';
@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from '@mui/material';
+import Stack from '@mui/material/Stack';
 
 const drawerWidth = 400;
 
@@ -34,6 +35,15 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 function PaletteFormNav({ open, handleDrawerOpen, handleSubmit, palettes }) {
+  const [openForm, setOpenForm] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpenForm(true);
+  };
+
+  const handleClose = () => {
+    setOpenForm(false);
+  };
   return (
     <>
       <CssBaseline />
@@ -52,23 +62,30 @@ function PaletteFormNav({ open, handleDrawerOpen, handleSubmit, palettes }) {
             Persistent drawer
           </Typography>
         </Toolbar>
-        <Box
+        <Stack
+          direction="row"
+          spacing={2}
           sx={{
-            display: 'flex',
+            marginRight: '1rem',
             alignItems: 'center',
-            '& > * + *': {
-              marginLeft: '0.75rem',
-            },
           }}
         >
-          <Link to="/">
-            <Button variant="contained" color="secondary" component="span">
-              Go Back
-            </Button>
-          </Link>
-          <PaletteMetaForm palettes={palettes} handleSubmit={handleSubmit} />
-        </Box>
+          <Button variant="contained" color="secondary" href="/">
+            Go Back
+          </Button>
+          <Button variant="contained" onClick={handleClickOpen}>
+            Save
+          </Button>
+        </Stack>
       </AppBar>
+      {openForm && (
+        <PaletteMetaForm
+          palettes={palettes}
+          handleSubmit={handleSubmit}
+          handleClose={handleClose}
+          openForm={openForm}
+        />
+      )}
     </>
   );
 }
