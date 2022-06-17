@@ -12,14 +12,22 @@ function App() {
   const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
   const [palettes, setPalettes] = useState(savedPalettes || seedColors);
 
-  const syncLocalStorage = (newPalettes) => {
-    window.localStorage.setItem('palettes', JSON.stringify(newPalettes));
+  const syncLocalStorage = (palettes) => {
+    window.localStorage.setItem('palettes', JSON.stringify(palettes));
   };
 
   const savePalette = (newPalette) => {
-    const newPalettes = [...palettes, newPalette];
-    setPalettes(newPalettes);
-    syncLocalStorage(newPalettes);
+    const changedPalettes = [...palettes, newPalette];
+    setPalettes(changedPalettes);
+    syncLocalStorage(changedPalettes);
+  };
+
+  const deletePalette = (paletteId) => {
+    const changedPalettes = palettes.filter(
+      (palette) => palette.id !== paletteId
+    );
+    setPalettes(changedPalettes);
+    syncLocalStorage(changedPalettes);
   };
 
   const findPalette = (id) => {
@@ -28,7 +36,12 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<PaletteList palettes={palettes} />} />
+        <Route
+          path="/"
+          element={
+            <PaletteList palettes={palettes} deletePalette={deletePalette} />
+          }
+        />
         <Route
           path="/palette/:paletteId"
           element={<Palette findPalette={findPalette} />}

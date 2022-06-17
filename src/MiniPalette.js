@@ -56,7 +56,7 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-function MiniPalette({ paletteName, emoji, colors, id }) {
+function MiniPalette({ paletteName, emoji, colors, id, deletePalette }) {
   const miniColorBoxes = colors.map((color, index) => (
     <div
       key={index}
@@ -64,6 +64,10 @@ function MiniPalette({ paletteName, emoji, colors, id }) {
       style={{ backgroundColor: color.color }}
     />
   ));
+
+  const handleDeletePalette = () => {
+    deletePalette(id);
+  };
   return (
     <Grid item xs={4}>
       <Root className={classes.root}>
@@ -75,7 +79,7 @@ function MiniPalette({ paletteName, emoji, colors, id }) {
         </Link>
         <IconButton
           aria-label="delete palette"
-          // onClick={handleRemovePalette}
+          onClick={handleDeletePalette}
           size="small"
           sx={{
             position: 'absolute',

@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import MiniPalette from './MiniPalette';
 
-function PaletteList({ palettes }) {
+function PaletteList({ palettes, deletePalette }) {
   return (
     <Box
       sx={{
@@ -13,7 +13,7 @@ function PaletteList({ palettes }) {
         height: '100vh',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
       }}
     >
       <Container maxWidth="md">
@@ -26,8 +26,8 @@ function PaletteList({ palettes }) {
             marginBottom: '2rem',
             color: 'white',
             '& a': {
-              color: 'inherit'
-            }
+              color: 'inherit',
+            },
           }}
         >
           <h1>React Colors</h1>
@@ -36,7 +36,11 @@ function PaletteList({ palettes }) {
 
         <Grid container spacing={4}>
           {palettes.map((palette, index) => (
-            <MiniPalette {...palette} key={index} />
+            <MiniPalette
+              {...palette}
+              key={index}
+              deletePalette={deletePalette}
+            />
           ))}
         </Grid>
       </Container>
