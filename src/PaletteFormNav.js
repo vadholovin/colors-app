@@ -35,14 +35,14 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 function PaletteFormNav({ open, handleDrawerOpen, handleSubmit, palettes }) {
-  const [openForm, setOpenForm] = useState(false);
+  const [formShowing, setFormShowing] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpenForm(true);
+  const showForm = () => {
+    setFormShowing(true);
   };
 
-  const handleClose = () => {
-    setOpenForm(false);
+  const hideForm = () => {
+    setFormShowing(false);
   };
   return (
     <>
@@ -73,17 +73,17 @@ function PaletteFormNav({ open, handleDrawerOpen, handleSubmit, palettes }) {
           <Button variant="contained" color="secondary" href="/">
             Go Back
           </Button>
-          <Button variant="contained" onClick={handleClickOpen}>
+          <Button variant="contained" onClick={showForm}>
             Save
           </Button>
         </Stack>
       </AppBar>
-      {openForm && (
+      {formShowing && (
         <PaletteMetaForm
           palettes={palettes}
           handleSubmit={handleSubmit}
-          handleClose={handleClose}
-          openForm={openForm}
+          hideForm={hideForm}
+          formShowing={formShowing}
         />
       )}
     </>

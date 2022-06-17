@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Button from '@mui/material/Button';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import EmojiPicker from './EmojiPicker';
+import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-function PaletteMetaForm({ palettes, handleSubmit, openForm, handleClose }) {
+function PaletteMetaForm({ palettes, handleSubmit, formShowing, hideForm }) {
   const [paletteName, setPaletteName] = useState('');
 
   const handleChange = (evt) => {
@@ -28,7 +29,7 @@ function PaletteMetaForm({ palettes, handleSubmit, openForm, handleClose }) {
   }, [paletteName, palettes]);
 
   return (
-    <Dialog open={openForm} onClose={handleClose}>
+    <Dialog open={formShowing} onClose={hideForm}>
       <DialogTitle>Choose a Palette Name</DialogTitle>
       <ValidatorForm onSubmit={() => handleSubmit(paletteName)}>
         <DialogContent>
@@ -36,6 +37,8 @@ function PaletteMetaForm({ palettes, handleSubmit, openForm, handleClose }) {
             Please enter a name for your new beautiful palette. Make sure it's
             unique!
           </DialogContentText>
+
+          <EmojiPicker />
 
           <TextValidator
             label="Palette Name"
@@ -53,7 +56,7 @@ function PaletteMetaForm({ palettes, handleSubmit, openForm, handleClose }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={hideForm}>Cancel</Button>
           <Button type="submit" variant="contained" color="primary">
             Save Palette
           </Button>
