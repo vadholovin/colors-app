@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
+import { DRAWER_WIDTH } from './constants';
 
-const drawerWidth = 400;
+const drawerWidth = DRAWER_WIDTH;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -56,7 +55,7 @@ function PaletteFormNav({ open, handleDrawerOpen, handleSubmit, palettes }) {
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
-            <MenuIcon />
+            <AddCircleIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Persistent drawer

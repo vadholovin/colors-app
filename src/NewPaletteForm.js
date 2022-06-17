@@ -13,8 +13,9 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import DraggableColorBox from './DraggableColorBox';
+import { DRAWER_WIDTH } from './constants';
 
-const drawerWidth = 400;
+const drawerWidth = DRAWER_WIDTH;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
@@ -38,6 +39,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
+  width: '100%',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
