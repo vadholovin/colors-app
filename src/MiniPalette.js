@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -56,7 +55,16 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
-function MiniPalette({ paletteName, emoji, colors, id, deletePalette }) {
+function MiniPalette({
+  paletteName,
+  emoji,
+  colors,
+  id,
+  deletePalette,
+  openDialog,
+  closeDialog,
+  acceptDeletion,
+}) {
   const miniColorBoxes = colors.map((color, index) => (
     <div
       key={index}
@@ -66,7 +74,7 @@ function MiniPalette({ paletteName, emoji, colors, id, deletePalette }) {
   ));
 
   const handleDeletePalette = () => {
-    deletePalette(id);
+    openDialog(id);
   };
   return (
     <Root className={classes.root}>
