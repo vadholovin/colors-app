@@ -1,0 +1,29 @@
+.NewPaletteForm {
+  display: flex;
+}
+
+.NewPaletteForm-colors {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5%;
+  height: calc(100vh - 64px);
+}
+
+@media (min-width: 600px) {
+  .NewPaletteForm-colors {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 10%;
+  }
+}
+@media (min-width: 900px) {
+  .NewPaletteForm-colors {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 20%;
+  }
+}
+@media (min-width: 1200px) {
+  .NewPaletteForm-colors {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 25%;
+  }
+}

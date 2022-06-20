@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import DraggableColorBox from './DraggableColorBox';
 import { DRAWER_WIDTH } from './constants';
+import './styles/NewPaletteForm.css';
 
 const drawerWidth = DRAWER_WIDTH;
 
@@ -86,7 +87,7 @@ function NewPaletteForm({ palettes, savePalette, maxColors = 20 }) {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <div className="NewPaletteForm">
       <PaletteFormNav
         open={open}
         handleDrawerOpen={handleDrawerOpen}
@@ -131,17 +132,15 @@ function NewPaletteForm({ palettes, savePalette, maxColors = 20 }) {
             sx={{
               width: '100%',
               marginBottom: '2rem',
-              '& .MuiButton-root': {
-                width: '50%',
-              },
             }}
           >
-            <Button color="error" size="small" onClick={clearColors}>
+            <Button color="error" size="small" fullWidth onClick={clearColors}>
               Clear Palette
             </Button>
             <Button
               color="primary"
               size="small"
+              fullWidth
               onClick={addRandomColor}
               disabled={paletteIsFull}
             >
@@ -158,14 +157,7 @@ function NewPaletteForm({ palettes, savePalette, maxColors = 20 }) {
       <Main open={open}>
         <DrawerHeader />
         {colors.length > 0 && (
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(5, 1fr)',
-              gridTemplateRows: 'repeat(4, 1fr)',
-              height: 'calc(100vh - 64px)',
-            }}
-          >
+          <div className="NewPaletteForm-colors">
             {colors.map((color) => (
               <Box key={uuid()}>
                 <DraggableColorBox
@@ -175,10 +167,10 @@ function NewPaletteForm({ palettes, savePalette, maxColors = 20 }) {
                 />
               </Box>
             ))}
-          </Box>
+          </div>
         )}
       </Main>
-    </Box>
+    </div>
   );
 }
 

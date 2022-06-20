@@ -58,21 +58,30 @@ function PaletteFormNav({ open, handleDrawerOpen, handleSubmit, palettes }) {
             <AddCircleIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Persistent drawer
+            Create a Palette
           </Typography>
         </Toolbar>
         <Stack
           direction="row"
-          spacing={2}
+          spacing={{ xs: 1, sm: 2 }}
           sx={{
             marginRight: '1rem',
             alignItems: 'center',
           }}
         >
-          <Button variant="contained" color="secondary" href="/">
+          <Button
+            variant="contained"
+            size="{{xs: 'small', sm: 'medium'}}"
+            color="secondary"
+            href="/"
+          >
             Go Back
           </Button>
-          <Button variant="contained" onClick={showForm}>
+          <Button
+            variant="contained"
+            size="{{xs: 'small', sm: 'medium'}}"
+            onClick={showForm}
+          >
             Save
           </Button>
         </Stack>
