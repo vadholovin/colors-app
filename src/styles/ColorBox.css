@@ -90,7 +90,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 4rem;
   line-height: 1.3;
   color: #fff;
   text-align: center;
@@ -113,8 +112,15 @@
   margin: 0;
   padding: 1rem;
   font-weight: 400;
+  font-size: 3rem;
   text-shadow: 1px 1px #000;
-  background: rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@media (min-width: 600px) {
+  .ColorBox-copy-msg h2 {
+    font-size: 4rem;
+  }
 }
 
 .ColorBox-copy-msg p {
