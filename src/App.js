@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Page from './Page';
 import PaletteList from './PaletteList';
 import Palette from './Palette';
 import SingleColorPalette from './SingleColorPalette';
@@ -43,21 +44,36 @@ function App() {
           <Route
             path="/"
             element={
-              <PaletteList palettes={palettes} deletePalette={deletePalette} />
+              <Page>
+                <PaletteList
+                  palettes={palettes}
+                  deletePalette={deletePalette}
+                />
+              </Page>
             }
           />
           <Route
             path="/palette/:paletteId"
-            element={<Palette findPalette={findPalette} />}
+            element={
+              <Page>
+                <Palette findPalette={findPalette} />
+              </Page>
+            }
           />
           <Route
             path="/palette/:paletteId/:colorId"
-            element={<SingleColorPalette findPalette={findPalette} />}
+            element={
+              <Page>
+                <SingleColorPalette findPalette={findPalette} />
+              </Page>
+            }
           />
           <Route
             path="/palette/new"
             element={
-              <NewPaletteForm palettes={palettes} savePalette={savePalette} />
+              <Page>
+                <NewPaletteForm palettes={palettes} savePalette={savePalette} />
+              </Page>
             }
           />
           <Route path="*" element={<NotFound />} />

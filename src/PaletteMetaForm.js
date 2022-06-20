@@ -27,6 +27,7 @@ function PaletteMetaForm({ palettes, handleSubmit, hideForm }) {
       paletteName: paletteName,
     };
     handleSubmit(newPalette);
+    setStage('');
   };
 
   useEffect(() => {
