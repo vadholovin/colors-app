@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -23,6 +24,9 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  '& a': {
+    textDecoration: 'none',
+  },
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
@@ -69,14 +73,16 @@ function PaletteFormNav({ open, handleDrawerOpen, handleSubmit, palettes }) {
             alignItems: 'center',
           }}
         >
-          <Button
-            variant="contained"
-            size="{{xs: 'small', sm: 'medium'}}"
-            color="secondary"
-            href="/"
-          >
-            Go Back
-          </Button>
+          <Link to="/">
+            <Button
+              variant="contained"
+              size="{{xs: 'small', sm: 'medium'}}"
+              color="secondary"
+              component="span"
+            >
+              Go Back
+            </Button>
+          </Link>
           <Button
             variant="contained"
             size="{{xs: 'small', sm: 'medium'}}"
