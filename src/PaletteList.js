@@ -4,6 +4,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import MiniPalette from './MiniPalette';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 function PaletteList({ palettes, deletePalette }) {
   return (
@@ -39,11 +40,15 @@ function PaletteList({ palettes, deletePalette }) {
           spacing={{ xs: 2, md: 4 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {palettes.map((palette, index) => (
-            <Grid key={index} item xs={4} sm={4} md={4}>
-              <MiniPalette {...palette} deletePalette={deletePalette} />
-            </Grid>
-          ))}
+          <TransitionGroup component={null}>
+            {palettes.map((palette, index) => (
+              <CSSTransition key={index} timeout={500} classNames="fade">
+                <Grid item xs={4} sm={4} md={4}>
+                  <MiniPalette {...palette} deletePalette={deletePalette} />
+                </Grid>
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
         </Grid>
       </Container>
     </Box>

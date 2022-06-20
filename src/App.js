@@ -7,6 +7,7 @@ import NewPaletteForm from './NewPaletteForm';
 import NotFound from './NotFound';
 import seedColors from './seedColors';
 import './styles/App.css';
+import './styles/transitions.css';
 
 function App() {
   const savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
