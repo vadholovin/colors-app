@@ -34,13 +34,15 @@ function PaletteList({ palettes, deletePalette }) {
           <Link to="/palette/new">Create Palette</Link>
         </Box>
 
-        <Grid container spacing={4}>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 4 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
           {palettes.map((palette, index) => (
-            <MiniPalette
-              {...palette}
-              key={index}
-              deletePalette={deletePalette}
-            />
+            <Grid key={index} item xs={4} sm={4} md={4}>
+              <MiniPalette {...palette} deletePalette={deletePalette} />
+            </Grid>
           ))}
         </Grid>
       </Container>

@@ -69,35 +69,33 @@ function MiniPalette({ paletteName, emoji, colors, id, deletePalette }) {
     deletePalette(id);
   };
   return (
-    <Grid item xs={4}>
-      <Root className={classes.root}>
-        <Link to={`palette/${id}`}>
-          <div className={classes.colors}>{miniColorBoxes}</div>
-          <h5 className={classes.title}>
-            {paletteName} <span>{emoji}</span>
-          </h5>
-        </Link>
-        <IconButton
-          aria-label="delete palette"
-          onClick={handleDeletePalette}
-          size="small"
-          sx={{
-            position: 'absolute',
-            top: '0',
-            right: '0',
-            borderRadius: '0',
-            color: 'white',
-            opacity: '0',
+    <Root className={classes.root}>
+      <Link to={`palette/${id}`}>
+        <div className={classes.colors}>{miniColorBoxes}</div>
+        <h5 className={classes.title}>
+          {paletteName} <span>{emoji}</span>
+        </h5>
+      </Link>
+      <IconButton
+        aria-label="delete palette"
+        onClick={handleDeletePalette}
+        size="small"
+        sx={{
+          position: 'absolute',
+          top: '0',
+          right: '0',
+          borderRadius: '0',
+          color: 'white',
+          opacity: '0',
+          backgroundColor: '#eb3d30',
+          '&:hover': {
             backgroundColor: '#eb3d30',
-            '&:hover': {
-              backgroundColor: '#eb3d30',
-            },
-          }}
-        >
-          <DeleteIcon fontSize="small" />
-        </IconButton>
-      </Root>
-    </Grid>
+          },
+        }}
+      >
+        <DeleteIcon fontSize="small" />
+      </IconButton>
+    </Root>
   );
 }
 

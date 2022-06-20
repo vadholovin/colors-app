@@ -6,13 +6,48 @@
 
 .Palette-colors {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 25%;
-  height: 90vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5%;
+  min-height: 90vh;
+}
+
+@media (min-width: 600px) {
+  .Palette-colors {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 10%;
+  }
+}
+@media (min-width: 900px) {
+  .Palette-colors {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 20%;
+  }
+}
+@media (min-width: 1200px) {
+  .Palette-colors {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 25%;
+  }
 }
 
 .SingleColorPalette .Palette-colors {
-  grid-template-rows: 50%;
+  grid-template-rows: 10%;
+}
+
+@media (min-width: 600px) {
+  .SingleColorPalette .Palette-colors {
+    grid-template-rows: 20%;
+  }
+}
+@media (min-width: 900px) {
+  .SingleColorPalette .Palette-colors {
+    grid-template-rows: calc(100% / 3);
+  }
+}
+@media (min-width: 1200px) {
+  .SingleColorPalette .Palette-colors {
+    grid-template-rows: 50%;
+  }
 }
 
 .Palette-footer {
