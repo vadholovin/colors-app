@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import EmojiPicker from './EmojiPicker';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import EmojiPicker from './EmojiPicker';
 
 function PaletteMetaForm({ palettes, handleSubmit, hideForm }) {
   const [paletteName, setPaletteName] = useState('');

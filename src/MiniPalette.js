@@ -76,6 +76,7 @@ function MiniPalette({
   const handleDeletePalette = () => {
     openDialog(id);
   };
+
   return (
     <Root className={classes.root}>
       <Link to={`palette/${id}`}>

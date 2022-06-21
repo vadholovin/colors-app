@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import PaletteMetaForm from './PaletteMetaForm';
 import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
@@ -10,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
+import PaletteMetaForm from './PaletteMetaForm';
 import { DRAWER_WIDTH } from './constants';
 
 const drawerWidth = DRAWER_WIDTH;

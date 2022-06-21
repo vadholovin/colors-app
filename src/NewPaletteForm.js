@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PaletteFormNav from './PaletteFormNav';
-import ColorPickerForm from './ColorPickerForm';
 import { v4 as uuid } from 'uuid';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -12,6 +10,8 @@ import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import PaletteFormNav from './PaletteFormNav';
+import ColorPickerForm from './ColorPickerForm';
 import DraggableColorBox from './DraggableColorBox';
 import { DRAWER_WIDTH } from './constants';
 import './styles/NewPaletteForm.css';
