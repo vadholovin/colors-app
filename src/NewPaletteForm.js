@@ -14,6 +14,7 @@ import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import DraggableColorBox from './DraggableColorBox';
 import { DRAWER_WIDTH } from './constants';
+import seedColors from './seedColors';
 import './styles/NewPaletteForm.css';
 
 const drawerWidth = DRAWER_WIDTH;
@@ -49,7 +50,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 function NewPaletteForm({ palettes, savePalette, maxColors = 20 }) {
   const [open, setOpen] = useState(true);
-  const [colors, setColors] = useState(palettes[0].colors);
+  const [colors, setColors] = useState(seedColors[0].colors);
   let navigate = useNavigate();
   let paletteIsFull = colors.length >= maxColors;
 

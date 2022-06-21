@@ -46,6 +46,7 @@ function ColorPickerForm({ colors, addNewColor, paletteIsFull }) {
       />
       <ValidatorForm
         onSubmit={handleSubmit}
+        instantValidate={false}
         style={{
           width: '100%',
           marginTop: '1.25rem',

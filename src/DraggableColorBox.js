@@ -3,8 +3,11 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import chroma from 'chroma-js';
 
 function DraggableColorBox({ color, name, removeColor }) {
+  const isDarkBgColor = chroma(color).luminance() <= 0.08;
+
   const handleRemove = () => {
     removeColor(name);
   };
@@ -33,7 +36,7 @@ function DraggableColorBox({ color, name, removeColor }) {
           justifyContent: 'space-between',
           width: '100%',
           fontSize: '12px',
-          color: 'rgba(0, 0, 0, 0.5)',
+          color: isDarkBgColor ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0,0,0,0.6)',
         }}
       >
         <Box
